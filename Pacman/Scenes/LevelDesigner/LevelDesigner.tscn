@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0htblkl6j3g3"]
+
+[ext_resource type="PackedScene" uid="uid://c14dwipf8nxvv" path="res://Scenes/LevelDesigner/DesignerTile/DesignerTile.tscn" id="1_xgma8"]
+
+[node name="LevelDesigner" type="Node"]
+
+[node name="DesignerTile" parent="." instance=ExtResource("1_xgma8")]
+position = Vector2(59, 141)
+scale = Vector2(0.2, 0.2)
