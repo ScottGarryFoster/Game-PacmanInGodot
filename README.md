@@ -40,10 +40,10 @@ void fragment()
 	COLOR = texture(TEXTURE, baseUV);
 }
 ```
-The result allows any designer to key in the split horizontally and vertically and then get out the exact tile they require. This is not the main way to interface with `DesignerTile` there is a method '`SetTile`' which will handle this for you on an instance basis. Each `DesignerTile` can be given a position in the larger scene it will hold on to. Upon a level click it will give it's current tile and the position in the larger scene to the signal.
-![](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/001-LD-SingleTile.png?raw=true)
+The result allows any designer to key in the split horizontally and vertically and then get out the exact tile they require. This is not the main way to interface with `DesignerTile` there is a method '`SetTile`' which will handle this for you on an instance basis. Each `DesignerTile` can be given a position in the larger scene it will hold on to. Upon a left click it will give it's current tile and the position in the larger scene to the signal.
+![A texture rendered as part of the larger texture](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/001-LD-SingleTile.png?raw=true)
 Taking this a step further, the `TileChooser` scene spawns 3 `DesignerTiles` and listens to the signal, "I have been clicked, you told me I was here and I look like this". For `TileChooser` it give this information to the `LevelDesigner` which updates it's current '`SelectedTile`' and this is what you paint in the main area.
 
 After around 2 hours of setup and learning how best to put all this together, the below image shows my result.
-![](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/001-LD-TileSelection.gif?raw=true)
+![A mouse clicks on tiles, another tile changes to match](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/001-LD-TileSelection.gif?raw=true)
 Next I needed a grid to paint upon with the '`SelectedTile'`
