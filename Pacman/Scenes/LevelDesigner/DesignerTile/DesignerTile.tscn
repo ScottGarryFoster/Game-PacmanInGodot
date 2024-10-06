@@ -1,10 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://c14dwipf8nxvv"]
 
 [ext_resource type="Script" path="res://Scenes/LevelDesigner/DesignerTile/DesignerTile.gd" id="1_exauk"]
-[ext_resource type="Shader" path="res://Scenes/LevelDesigner/DesignerTile/SegementedShader.gdshader" id="1_mgbci"]
+[ext_resource type="Shader" path="res://Library/Shaders/TileShader.gdshader" id="1_mgbci"]
 [ext_resource type="Texture2D" uid="uid://cvl4o7jfk33w7" path="res://Media/Tilesets/TestTileset copy.png" id="2_gwkkp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xwp36"]
+resource_local_to_scene = true
 shader = ExtResource("1_mgbci")
 shader_parameter/tilesHorizontal = 10
 shader_parameter/tilesVertical = 10
@@ -27,4 +28,4 @@ texture = ExtResource("2_gwkkp")
 position = Vector2(160, 160)
 shape = SubResource("RectangleShape2D_gyr2j")
 
-[connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]
+[connection signal="gui_input" from="TextureRect" to="." method="OnTextureRectGuiInput"]

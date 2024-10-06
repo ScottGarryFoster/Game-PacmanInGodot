@@ -1,9 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0htblkl6j3g3"]
+[gd_scene load_steps=4 format=3 uid="uid://c0htblkl6j3g3"]
 
+[ext_resource type="Script" path="res://Scenes/LevelDesigner/LevelDesigner.gd" id="1_t8b3w"]
 [ext_resource type="PackedScene" uid="uid://c14dwipf8nxvv" path="res://Scenes/LevelDesigner/DesignerTile/DesignerTile.tscn" id="1_xgma8"]
+[ext_resource type="PackedScene" uid="uid://dqw5silrbnc5l" path="res://Scenes/LevelDesigner/TileChooser/TileChooser.tscn" id="3_dq5rf"]
 
 [node name="LevelDesigner" type="Node"]
+script = ExtResource("1_t8b3w")
 
 [node name="DesignerTile" parent="." instance=ExtResource("1_xgma8")]
+visible = false
 position = Vector2(59, 141)
 scale = Vector2(0.2, 0.2)
+
+[node name="TileChooser" parent="." instance=ExtResource("3_dq5rf")]
+position = Vector2(377, 253)
