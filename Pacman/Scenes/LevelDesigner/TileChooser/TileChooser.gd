@@ -1,10 +1,8 @@
 extends Node2D
 
-## The scene to spawn tiles for.
-var DesignerTileScene = preload("res://Scenes/LevelDesigner/DesignerTile/DesignerTile.tscn")
-
-## The script to use when spawning tiles.
-var DesignerTileScript = preload("res://Scenes/LevelDesigner/DesignerTile/DesignerTile.gd")
+## Called upon a new tile selection
+## func OnSelectedNewTile(tilePosition: Vector2i):
+signal SelectedNewTile
 
 ## Relative to the origin of the scene, where to begin placing tiles.
 @export var StartLocation : Vector2
@@ -14,6 +12,12 @@ var DesignerTileScript = preload("res://Scenes/LevelDesigner/DesignerTile/Design
 
 ## The size of each tile and therefore the amount to place them apart.
 @export var PixelSizeForEachTile : Vector2
+
+## The scene to spawn tiles for.
+var DesignerTileScene = preload("res://Scenes/LevelDesigner/DesignerTile/DesignerTile.tscn")
+
+## The script to use when spawning tiles.
+var DesignerTileScript = preload("res://Scenes/LevelDesigner/DesignerTile/DesignerTile.gd")
 
 ## Stores all tiles in the chooser.
 var SelectableTileCollection = []
@@ -58,6 +62,5 @@ func SpawnSelectableTiles():
 
 ## Responds to tiles selected.
 func OnTileSelected(contextToUs: Vector2i, shaderTile: Vector2i):
-	print("ShaderTile: " + str(shaderTile.x) + ", " + str(shaderTile.y))
-	print("ContextToUs: " + str(contextToUs.x) + ", " + str(contextToUs.y))
+	SelectedNewTile.emit(shaderTile)
 	pass

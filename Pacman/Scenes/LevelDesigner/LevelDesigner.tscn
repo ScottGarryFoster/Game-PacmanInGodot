@@ -7,10 +7,9 @@
 [node name="LevelDesigner" type="Node"]
 script = ExtResource("1_t8b3w")
 
-[node name="DesignerTile" parent="." instance=ExtResource("1_xgma8")]
-visible = false
-position = Vector2(59, 141)
+[node name="SelectedTile" parent="." instance=ExtResource("1_xgma8")]
+position = Vector2(64, 540)
 scale = Vector2(0.2, 0.2)
 
 [node name="TileChooser" parent="." instance=ExtResource("3_dq5rf")]
-position = Vector2(377, 253)
+position = Vector2(144, 540)
