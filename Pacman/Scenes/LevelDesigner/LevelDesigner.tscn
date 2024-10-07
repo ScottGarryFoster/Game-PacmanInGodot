@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0htblkl6j3g3"]
+[gd_scene load_steps=5 format=3 uid="uid://c0htblkl6j3g3"]
 
 [ext_resource type="Script" path="res://Scenes/LevelDesigner/LevelDesigner.gd" id="1_t8b3w"]
 [ext_resource type="PackedScene" uid="uid://c14dwipf8nxvv" path="res://Scenes/LevelDesigner/DesignerTile/DesignerTile.tscn" id="1_xgma8"]
 [ext_resource type="PackedScene" uid="uid://dqw5silrbnc5l" path="res://Scenes/LevelDesigner/TileChooser/TileChooser.tscn" id="3_dq5rf"]
+[ext_resource type="PackedScene" uid="uid://ct8n4rvvm2y46" path="res://Scenes/LevelDesigner/LevelArea/LevelArea.tscn" id="4_yfl3j"]
 
 [node name="LevelDesigner" type="Node"]
 script = ExtResource("1_t8b3w")
@@ -13,3 +14,9 @@ scale = Vector2(0.2, 0.2)
 
 [node name="TileChooser" parent="." instance=ExtResource("3_dq5rf")]
 position = Vector2(144, 540)
+
+[node name="LevelArea" parent="." instance=ExtResource("4_yfl3j")]
+position = Vector2(32, 32)
+ScaleForEachTile = Vector2(0.1, 0.1)
+PixelSizeForEachTile = Vector2(32, 32)
+GridSize = Vector2i(10, 10)

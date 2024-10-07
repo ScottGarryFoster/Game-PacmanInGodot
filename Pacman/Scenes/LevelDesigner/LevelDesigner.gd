@@ -11,6 +11,11 @@ func _ready() -> void:
 			$TileChooser.connect("SelectedNewTile", Callable(self, "OnSelectedNewTile"))
 	else:
 		print("TileChooser did not have a SelectedNewTile signal. There is no call back.")
+		
+	if $LevelArea.has_signal("SelectedNewTile"):
+			$LevelArea.connect("SelectedNewTile", Callable(self, "OnSelectedLevelArea"))
+	else:
+		print("LevelArea did not have a SelectedNewTile signal. There is no call back.")
 	
 	# Setup Selected Tile
 	$SelectedTile.visible = false	
@@ -26,6 +31,17 @@ func OnSelectedNewTile(tilePosition: Vector2i):
 	$SelectedTile.SetTile(tilePosition)
 	$SelectedTile.visible = true
 	SelectedTile = tilePosition
+	pass
+
+## Called when Level Area has been selected
+func OnSelectedLevelArea(tilePosition: Vector2i):
+	if SelectedTile.x == -1:
+		return
+	if SelectedTile.y == -1:
+		return
+		
+	$LevelArea.SetTile(tilePosition, SelectedTile)
+	
 	pass
 
 ## No longer required as sub scenes will be used, kept in this submit as it maybe used in next.
