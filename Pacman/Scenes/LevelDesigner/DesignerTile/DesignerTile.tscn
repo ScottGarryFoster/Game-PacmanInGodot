@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/LevelDesigner/DesignerTile/DesignerTile.gd" id="1_exauk"]
 [ext_resource type="Shader" path="res://Library/Shaders/TileShader.gdshader" id="1_mgbci"]
-[ext_resource type="Texture2D" uid="uid://cvl4o7jfk33w7" path="res://Media/Tilesets/TestTileset copy.png" id="2_gwkkp"]
+[ext_resource type="Texture2D" uid="uid://d3p8hkf7nok8q" path="res://Media/Tilesets/PacmanLevel.png" id="3_7ie5w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xwp36"]
 resource_local_to_scene = true
@@ -22,7 +22,7 @@ material = SubResource("ShaderMaterial_xwp36")
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 0
-texture = ExtResource("2_gwkkp")
+texture = ExtResource("3_7ie5w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(160, 160)

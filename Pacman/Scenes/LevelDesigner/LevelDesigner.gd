@@ -20,18 +20,18 @@ func _ready() -> void:
 	# Setup Selected Tile
 	$SelectedTile.visible = false	
 	SelectedTile = Vector2i(-1, -1)
-	pass # Replace with function body.
+	return
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	return
 
 ## Updates the Selected Tile to the one from the Tile Chooser
 func OnSelectedNewTile(tilePosition: Vector2i):
 	$SelectedTile.SetTile(tilePosition)
 	$SelectedTile.visible = true
 	SelectedTile = tilePosition
-	pass
+	return
 
 ## Called when Level Area has been selected
 func OnSelectedLevelArea(tilePosition: Vector2i):
@@ -42,11 +42,11 @@ func OnSelectedLevelArea(tilePosition: Vector2i):
 		
 	$LevelArea.SetTile(tilePosition, SelectedTile)
 	
-	pass
+	return
 
 ## No longer required as sub scenes will be used, kept in this submit as it maybe used in next.
 func SetDesignerTile(tile: Node, location: Vector2i):
 	var DesignerTileScript = preload("res://Scenes/LevelDesigner/DesignerTile/DesignerTile.gd")
 	if tile.get_script() == DesignerTileScript: 
 		tile.SetTile(location)
-	pass
+	return

@@ -49,7 +49,7 @@ func SpawnSelectableTiles():
 		# If we have issues with this, ensure the startup for DesignerTile
 		# does not mess with the Shader or call SetTile.
 		currentTile.CurrentLocationInOuterWorld = Vector2i(i, 0)
-		currentTile.SetTile(Vector2i(i, 1))
+		currentTile.SetTile(Vector2i(i, 0))
 		
 		# Hook up the event upon selected
 		if currentTile.has_signal("TileSelected"):
