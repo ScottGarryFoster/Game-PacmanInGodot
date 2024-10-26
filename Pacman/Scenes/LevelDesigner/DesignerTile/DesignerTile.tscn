@@ -7,14 +7,15 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xwp36"]
 resource_local_to_scene = true
 shader = ExtResource("1_mgbci")
-shader_parameter/tilesHorizontal = 10
-shader_parameter/tilesVertical = 10
+shader_parameter/tilesHorizontal = 20
+shader_parameter/tilesVertical = 20
 shader_parameter/currentTile = Vector2(0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gyr2j"]
 size = Vector2(320, 320)
 
 [node name="DesignerTile" type="Area2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_exauk")
 
 [node name="TextureRect" type="TextureRect" parent="."]
