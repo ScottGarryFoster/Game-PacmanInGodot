@@ -46,4 +46,15 @@ Taking this a step further, the `TileChooser` scene spawns 3 `DesignerTiles` and
 
 After around 2 hours of setup and learning how best to put all this together, the below image shows my result.
 ![A mouse clicks on tiles, another tile changes to match](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/001-LD-TileSelection.gif?raw=true)
-Next I needed a grid to paint upon with the '`SelectedTile'`
+Next I needed a grid to paint upon with the `SelectedTile`. This was technically easy but tedious as all that needed to be done was to have a grid of tiles and for those tiles to respond when I paint the tile. I started to do this starting with the top edge of the Pacman tile set.
+| Painting tiles  | Tileset    |
+| -------- | ------- |
+| ![Painting tiles on a grid using a simple system of conditionals](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/002-LD-TilePlacement.gif?raw=true)   | ![Tileset used to paint](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/002-LD-TilePlacementTileset.png?raw=true) |
+A problem formed from this technique. The tiles I would need to create a perfect level would being to snowball out of control as time goes on and even at the point of getting this prototype working I was starting to run out of space.
+
+I decided to see if anyone else had come across the tile set ballooning problem and found the 'Duel-Tile' solution. This involves creating a system which the data set within each tile is offset from the tile which needs to change based upon the data. Offsetting it by one (in this case in the negative direction) it means there are only 4 neighbours and by extension 16 possible combinations per matchup (so dirt vs grass would be 16, dirt vs water another 16 although you could re-use tiles). It is best summarised in the image below and short video:
+
+![With duel tile grid you have less neighbours meaning less work](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/002-LD-TilePlacementTileset-Dual-Grid.png?raw=true)
+
+* [Draw fewer tiles - by using a Dual-Grid system! by jess::codes](https://www.youtube.com/watch?v=jEWFSv3ivTg)
+* [Github implementation](https://github.com/jess-hammer/dual-grid-tilemap-system-godot)
