@@ -4,8 +4,12 @@ extends Node
 ## If set to -1, -1, then no tile has been selected yet.
 var SelectedTile : Vector2i
 
+var testTexture = preload("res://Media/Tilesets/DuelTilesetTemplate.png")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$SelectedTile2.SetTexture(testTexture, Vector2i(4, 4))
+	$SelectedTile2.SetTile(Vector2i(2,2))
 	
 	if $TileChooser.has_signal("SelectedNewTile"):
 			$TileChooser.connect("SelectedNewTile", Callable(self, "OnSelectedNewTile"))
