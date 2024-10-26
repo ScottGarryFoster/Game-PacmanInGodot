@@ -50,6 +50,7 @@ Next I needed a grid to paint upon with the `SelectedTile`. This was technically
 | Painting tiles  | Tileset    |
 | -------- | ------- |
 | ![Painting tiles on a grid using a simple system of conditionals](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/002-LD-TilePlacement.gif?raw=true)   | ![Tileset used to paint](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/002-LD-TilePlacementTileset.png?raw=true) |
+
 A problem formed from this technique. The tiles I would need to create a perfect level would being to snowball out of control as time goes on and even at the point of getting this prototype working I was starting to run out of space.
 
 I decided to see if anyone else had come across the tile set ballooning problem and found the 'Duel-Tile' solution. This involves creating a system which the data set within each tile is offset from the tile which needs to change based upon the data. Offsetting it by one (in this case in the negative direction) it means there are only 4 neighbours and by extension 16 possible combinations per matchup (so dirt vs grass would be 16, dirt vs water another 16 although you could re-use tiles). It is best summarised in the image below and short video:
