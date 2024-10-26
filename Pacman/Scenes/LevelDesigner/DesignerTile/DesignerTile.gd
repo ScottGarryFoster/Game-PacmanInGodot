@@ -30,3 +30,18 @@ func OnTextureRectGuiInput(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		TileSelected.emit(CurrentLocationInOuterWorld, ShaderOutputTile)
 	pass
+
+## Updates the texture on the tile.
+func SetTexture(newTexture: Texture2D, textureTiles: Vector2i = Vector2i(-1, -1)):
+	if newTexture == null:
+		push_error("Texture was null when setting within DesignerTile")
+		return
+		
+	$TextureRect.texture = newTexture
+	
+	if(textureTiles.x > 0):
+		$TextureRect.material.set_shader_parameter("tilesHorizontal", textureTiles.x)
+	
+	if(textureTiles.y > 0):
+		$TextureRect.material.set_shader_parameter("tilesVertical", textureTiles.y)
+	pass
