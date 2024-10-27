@@ -50,7 +50,7 @@ var PaintableTextures: Array[Texture2D] = [
 ]
 
 ## Clickable Tile Texture
-var ClickableTexture = preload("res://Media/Tilesets/Transparent.png")
+var ClickableTexture = preload("res://Media/Tilesets/ClickableTileset.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -114,6 +114,7 @@ func SpawnSelectableTiles():
 			currentSelectableTile.SetTile(Vector2i(0, 0))
 			currentSelectableTile.z_index = 1000
 			currentSelectableTile.SetTexture(ClickableTexture, Vector2i(4, 4))
+			currentSelectableTile.ReactToMouseOver = true
 			add_child(currentSelectableTile)
 			
 			# Hook up the event upon selected

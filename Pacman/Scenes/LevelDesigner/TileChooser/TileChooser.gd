@@ -54,6 +54,7 @@ func SpawnSelectableTiles():
 		currentTile.CurrentLocationInOuterWorld = Vector2i(i, 0)
 		currentTile.SetTile(Vector2i(i, 0))
 		currentTile.SetTexture(ChooserTexture, ChoserTextureColumnsAndRows)
+		currentTile.SetTileSelectedSignalTime(MouseClickReaction.Reaction.MouseClick)
 		
 		# Hook up the event upon selected
 		if currentTile.has_signal("TileSelected"):
