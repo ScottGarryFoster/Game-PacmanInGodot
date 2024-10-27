@@ -48,7 +48,7 @@ After around 2 hours of setup and learning how best to put all this together, th
 ![A mouse clicks on tiles, another tile changes to match](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/001-LD-TileSelection.gif?raw=true)
 Next I needed a grid to paint upon with the `SelectedTile`. This was technically easy but tedious as all that needed to be done was to have a grid of tiles and for those tiles to respond when I paint the tile. I started to do this starting with the top edge of the Pacman tile set.
 | Painting tiles  | Tileset    |
-| -------- | ------- |
+| :-: | :-: |
 | ![Painting tiles on a grid using a simple system of conditionals](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/002-LD-TilePlacement.gif?raw=true)   | ![Tileset used to paint](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/002-LD-TilePlacementTileset.png?raw=true) |
 
 A problem formed from this technique. The tiles I would need to create a perfect level were beginning to snowball out of control as time goes on and even at the point of getting this prototype working I was starting to run out of space.
@@ -59,3 +59,14 @@ I decided to see if anyone else had come across the tile set ballooning problem,
 
 * [Draw fewer tiles - by using a Dual-Grid system! by jess::codes](https://www.youtube.com/watch?v=jEWFSv3ivTg)
 * [Github implementation](https://github.com/jess-hammer/dual-grid-tilemap-system-godot)
+
+The first step of implementing the Duel-Tilesystem was to create a template which Jess::Codes did happen to link to within the Github and display within the video itself. Using my existing templates I created a version of the template and added a grid of tiles on top of my painter tiles. I did come across an issue at this point as even though the z-index of my clicker tiles was above the painter tiles, the ones behind were still capturing the clicks (also went down a rabbit hole of thinking it might be linked to the transparency of the image as it would occasionally work). To resolve this there are two types of tiles, those with clicks and those without - without literally set to disregard all mouse input. 
+
+Getting the Grid aligned was tricky but eventually I managed to align things correctly. The implementation is similar to that of Jess::codes except in GDScript and using GameObjects/Scenes, in that it uses a dictionary and Enums. This allows for extra tiles to be added a moment’s notice and for easy debugging. I extended the implementation a little to have a texture (defined an int in the dictionary) as there would be more than one tileset. For the prototype only one tile set was required so below is my implementation. Also, below I put a little extra time into the scaling of the tiles so now I can scale the tiles up and down without changing a bunch of numbers (now it is literally just scale I change).
+
+| Small Tiles | Big Tiles |
+| :-: | :-: |
+| ![Placing tiles on a Duel-Tile grid system](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/003-LD-DuelGrid-Small.gif?raw=true) | ![Placing tiles on a Duel-Tile grid system](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/003-LD-DuelGrid-Large.gif?raw=true) |
+
+| Border | Template |
+| :-: | :-: |
