@@ -13,6 +13,7 @@ signal SelectedNewTile
 ## The size of each tile and therefore the amount to place them apart.
 @export var PixelSizeForEachTile : Vector2
 
+## The number of tiles Width/Height.
 @export var GridSize : Vector2i
 
 ## Defines each tile type. Used to parse them into ints for searching.
