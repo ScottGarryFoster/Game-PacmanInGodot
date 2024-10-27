@@ -106,6 +106,7 @@ func SpawnSelectableTiles():
 			# Move to correct position
 			currentSelectableTile.scale = ScaleForEachTile
 			currentSelectableTile.position = currentLocation;
+			
 			# Shift correctly
 			var MovementInPositiveDirection = tileSize * ScaleForEachTile
 			var CorrectMovement = Vector2(-MovementInPositiveDirection.x, MovementInPositiveDirection.y)
@@ -168,29 +169,28 @@ func RunAllRules():
 			var tilePosition = Vector2i(x, y)
 			var indexOfPosition : int = GetIndexFromPosition(tilePosition)
 			
-			# --- Left ---
-			
+			# Top Left
 			if tilePosition.x > 0 && tilePosition.y > 0:
 				# Tile is not on top left or top edge - set Top Left
 				var tlPosition = tilePosition
 				var tlIndex : int = GetIndexFromPosition(tlPosition)
 				topLeft = PaintedValues[tlIndex]
 				
+			# Bottom Left
 			if tilePosition.x > 0 && tilePosition.y + 1 < GridSize.y:
 				# Tile is not on top left or bottom edge - set Bottom Left
 				var blPosition = Vector2i(tilePosition.x, tilePosition.y + 1)
 				var blIndex : int = GetIndexFromPosition(blPosition)
 				bottomLeft = PaintedValues[blIndex]
 				
-			
-			# --- Right ---
-			
+			# Top Right
 			if tilePosition.x + 1 < GridSize.x && tilePosition.y > 0:
 				# Tile is not on top right or top edge - set Top Right
 				var trPosition = Vector2i(tilePosition.x + 1, tilePosition.y)
 				var trIndex : int = GetIndexFromPosition(trPosition)
 				topRight = PaintedValues[trIndex]
 				
+			# Bottom Right
 			if tilePosition.x + 1 < GridSize.x && tilePosition.y + 1 < GridSize.y:
 				# Tile is not on top right or bottom edge - set Bottom Right
 				var brPosition = Vector2i(tilePosition.x + 1, tilePosition.y + 1)

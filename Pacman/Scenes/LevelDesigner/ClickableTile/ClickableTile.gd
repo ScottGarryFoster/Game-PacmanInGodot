@@ -7,8 +7,6 @@ signal TileSelected
 ## Given to us by whatever spawns up to give context when informing the outter world we were selected.
 @export var CurrentLocationInOuterWorld : Vector2i
 
-@export var PixelSize : Vector2i
-
 ## The current tile displayed
 var ShaderOutputTile : Vector2i
 
@@ -52,5 +50,6 @@ func OnTextureRectGuiInput(event: InputEvent) -> void:
 		TileSelected.emit(CurrentLocationInOuterWorld, ShaderOutputTile)
 	pass # Replace with function body.
 
+## Gets the size of the object.
 func GetSize() -> Vector2:
 	return $CollisionShape2D.transform.origin
