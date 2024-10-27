@@ -10,9 +10,6 @@ signal SelectedNewTile
 ## The scale to set each tile.
 @export var ScaleForEachTile : Vector2
 
-## The size of each tile and therefore the amount to place them apart.
-@export var PixelSizeForEachTile : Vector2
-
 ## The number of tiles Width/Height.
 @export var GridSize : Vector2i
 
