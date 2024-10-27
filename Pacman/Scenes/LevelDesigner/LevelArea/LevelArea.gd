@@ -47,6 +47,8 @@ var PaintedValues = []
 ## within the dictionary given.
 var PaintableTextures: Array[Texture2D] = [
 	preload("res://Media/Tilesets/PacmanBorder.png"),
+	preload("res://Media/Tilesets/PacmanBarrierBigInner.png"),
+	preload("res://Media/Tilesets/PacmanBarrierBigOuter.png"),
 ]
 
 ## Clickable Tile Texture
@@ -78,7 +80,7 @@ func SpawnSelectableTiles():
 		for x in range(GridSize.x):
 			var currentTile = DesignerTileScene.instantiate()
 			ViewedTiles.append(currentTile)
-			PaintedValues.append(Vector2i(0, 0))
+			PaintedValues.append(Vector2i(1, 0))
 			
 			if(tileSize.x == -1):
 				tileSize = currentTile.GetSize()
@@ -205,6 +207,9 @@ func RunAllRules():
 			
 			var newTile = Vector2i(result.x, result.y)
 			ViewedTiles[indexOfPosition].SetTile(newTile)
+			
+			var texture : Texture2D = GetTextureFromNumber(result.z)
+			ViewedTiles[indexOfPosition].SetTexture(texture, Vector2i(4, 4))
 	pass
 	
 func RunRule(
@@ -231,6 +236,46 @@ func RunRule(
 		Vector4i(Tile.Nothing,Tile.Border,Tile.Border,Tile.Nothing): Vector3i(2, 3, 0),
 		Vector4i(Tile.Nothing,Tile.Border,Tile.Nothing,Tile.Border): Vector3i(1, 0, 0),
 		Vector4i(Tile.Border,Tile.Border,Tile.Nothing,Tile.Border): Vector3i(2, 2, 0),
+		
+		# Top Left, Top Right, Bottom Left, Bottom Right
+		Vector4i(Tile.Barrier,Tile.Barrier,Tile.Barrier,Tile.Barrier): Vector3i(0, 3, 1),
+		Vector4i(Tile.Border,Tile.Barrier,Tile.Barrier,Tile.Barrier): Vector3i(3, 3, 1),
+		Vector4i(Tile.Border,Tile.Border,Tile.Barrier,Tile.Barrier): Vector3i(1, 2, 1),
+		Vector4i(Tile.Border,Tile.Border,Tile.Border,Tile.Barrier): Vector3i(3, 1, 1),
+		#Vector4i(Tile.Border,Tile.Border,Tile.Border,Tile.Border): Vector3i(2, 1, 0),
+		Vector4i(Tile.Barrier,Tile.Border,Tile.Barrier,Tile.Barrier): Vector3i(0, 2, 1),
+		Vector4i(Tile.Barrier,Tile.Barrier,Tile.Border,Tile.Barrier): Vector3i(0, 0, 1),
+		Vector4i(Tile.Barrier,Tile.Barrier,Tile.Barrier,Tile.Border): Vector3i(1, 3, 1),
+		Vector4i(Tile.Border,Tile.Barrier,Tile.Barrier,Tile.Border): Vector3i(0, 1, 1),
+		Vector4i(Tile.Border,Tile.Barrier,Tile.Border,Tile.Barrier): Vector3i(3, 2, 1),
+		Vector4i(Tile.Border,Tile.Barrier,Tile.Border,Tile.Border): Vector3i(2, 0, 1),
+		Vector4i(Tile.Barrier,Tile.Barrier,Tile.Border,Tile.Border): Vector3i(3, 0, 1),
+		Vector4i(Tile.Barrier,Tile.Border,Tile.Border,Tile.Border): Vector3i(1, 1, 1),
+		Vector4i(Tile.Barrier,Tile.Border,Tile.Border,Tile.Barrier): Vector3i(2, 3, 1),
+		Vector4i(Tile.Barrier,Tile.Border,Tile.Barrier,Tile.Border): Vector3i(1, 0, 1),
+		Vector4i(Tile.Border,Tile.Border,Tile.Barrier,Tile.Border): Vector3i(2, 2, 1),
+		
+		# Top Left, Top Right, Bottom Left, Bottom Right
+		Vector4i(Tile.Border,Tile.Nothing,Tile.Barrier,Tile.Nothing): Vector3i(3, 3, 2),
+		Vector4i(Tile.Barrier,Tile.Nothing,Tile.Border,Tile.Nothing): Vector3i(0, 0, 2),
+		Vector4i(Tile.Barrier,Tile.Nothing,Tile.Barrier,Tile.Nothing): Vector3i(3, 2, 2),
+		
+		Vector4i(Tile.Nothing,Tile.Border,Tile.Nothing,Tile.Barrier): Vector3i(0, 2, 2),
+		Vector4i(Tile.Nothing,Tile.Barrier,Tile.Nothing,Tile.Border): Vector3i(1, 3, 2),
+		Vector4i(Tile.Nothing,Tile.Barrier,Tile.Nothing,Tile.Barrier): Vector3i(1, 0, 2),
+		
+		Vector4i(Tile.Nothing,Tile.Nothing,Tile.Border,Tile.Barrier): Vector3i(0, 3, 2),
+		Vector4i(Tile.Nothing,Tile.Nothing,Tile.Barrier,Tile.Border): Vector3i(0, 1, 2),
+		Vector4i(Tile.Nothing,Tile.Nothing,Tile.Barrier,Tile.Barrier): Vector3i(3, 0, 2),
+		
+		Vector4i(Tile.Barrier,Tile.Border,Tile.Nothing,Tile.Nothing): Vector3i(1, 1, 2),
+		Vector4i(Tile.Border,Tile.Barrier,Tile.Nothing,Tile.Nothing): Vector3i(2, 2, 2),
+		Vector4i(Tile.Barrier,Tile.Barrier,Tile.Nothing,Tile.Nothing): Vector3i(1, 2, 2),
+		
+		Vector4i(Tile.Barrier,Tile.Nothing,Tile.Nothing,Tile.Nothing): Vector3i(3, 1, 2),
+		Vector4i(Tile.Nothing,Tile.Barrier,Tile.Nothing,Tile.Nothing): Vector3i(2, 0, 2),
+		Vector4i(Tile.Nothing,Tile.Nothing,Tile.Barrier,Tile.Nothing): Vector3i(2, 3, 2),
+		Vector4i(Tile.Nothing,Tile.Nothing,Tile.Nothing,Tile.Barrier): Vector3i(2, 1, 2),
 		}
 	
 	if points_dict.has(Vector4i(tl, tr, bl, br)):
@@ -243,4 +288,14 @@ func VectorToTile(textureLocation: Vector2i):
 		return Tile.Nothing
 	if textureLocation.x == 1 && textureLocation.y == 0:
 		return Tile.Border
+	if textureLocation.x == 2 && textureLocation.y == 0:
+		return Tile.Barrier
 	return Tile.Nothing
+	
+func GetTextureFromNumber(textureNumber: int):
+	if textureNumber < 0:
+		return PaintableTextures[0]
+	if textureNumber > PaintableTextures.size() - 1:
+		return PaintableTextures[0]
+	
+	return PaintableTextures[textureNumber]
