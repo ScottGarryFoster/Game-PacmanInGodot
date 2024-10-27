@@ -10,16 +10,17 @@ script = ExtResource("1_t8b3w")
 
 [node name="SelectedTile" parent="." instance=ExtResource("1_xgma8")]
 position = Vector2(64, 540)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.5, 0.5)
 
 [node name="TileChooser" parent="." instance=ExtResource("3_dq5rf")]
 position = Vector2(144, 540)
+ScaleForEachTile = Vector2(0.5, 0.5)
 
 [node name="LevelArea" parent="." instance=ExtResource("4_yfl3j")]
 position = Vector2(32, 32)
-ScaleForEachTile = Vector2(0.05, 0.05)
+ScaleForEachTile = Vector2(0.5, 0.5)
 PixelSizeForEachTile = Vector2(32, 32)
-GridSize = Vector2i(10, 10)
+GridSize = Vector2i(5, 5)
 
 [node name="SelectedTile2" parent="." instance=ExtResource("1_xgma8")]
 position = Vector2(904, 95.9999)

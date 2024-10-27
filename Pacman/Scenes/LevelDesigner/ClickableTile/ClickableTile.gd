@@ -26,6 +26,10 @@ func SetTile(position: Vector2i):
 	ShaderOutputTile = position
 	$TextureRect.material.set_shader_parameter("currentTile", Vector2(ShaderOutputTile.x, ShaderOutputTile.y))
 	pass
+	
+func DisableMouseInput():
+	input_pickable = false
+	pass
 
 ## Updates the texture on the tile.
 func SetTexture(newTexture: Texture2D, textureTiles: Vector2i = Vector2i(-1, -1)):
@@ -41,6 +45,12 @@ func SetTexture(newTexture: Texture2D, textureTiles: Vector2i = Vector2i(-1, -1)
 	if(textureTiles.y > 0):
 		$TextureRect.material.set_shader_parameter("tilesVertical", textureTiles.y)
 	pass
+
+## Occurs when an input action happens on this scene. In this case Mouse Input.
+func OnTextureRectGuiInput(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		TileSelected.emit(CurrentLocationInOuterWorld, ShaderOutputTile)
+	pass # Replace with function body.
 
 func GetSize() -> Vector2:
 	return $CollisionShape2D.transform.origin

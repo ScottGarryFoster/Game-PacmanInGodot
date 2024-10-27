@@ -10,14 +10,17 @@ signal SelectedNewTile
 ## The scale to set each tile.
 @export var ScaleForEachTile : Vector2
 
-## The size of each tile and therefore the amount to place them apart.
-@export var PixelSizeForEachTile : Vector2
+## Texture to select tiles from
+@export var ChooserTexture : Texture2D
+
+## Number of columns and rows within the texture
+@export var ChoserTextureColumnsAndRows : Vector2i
 
 ## The scene to spawn tiles for.
-var DesignerTileScene = preload("res://Scenes/LevelDesigner/DesignerTile/DesignerTile.tscn")
+var ClickableTileScene = preload("res://Scenes/LevelDesigner/ClickableTile/ClickableTile.tscn")
 
 ## The script to use when spawning tiles.
-var DesignerTileScript = preload("res://Scenes/LevelDesigner/DesignerTile/DesignerTile.gd")
+var ClickableTileScript = preload("res://Scenes/LevelDesigner/ClickableTile/ClickableTile.gd")
 
 ## Stores all tiles in the chooser.
 var SelectableTileCollection = []
@@ -37,12 +40,12 @@ func SpawnSelectableTiles():
 	
 	var currentLocation = StartLocation
 	for i in range(3):
-		var currentTile = DesignerTileScene.instantiate()
+		var currentTile = ClickableTileScene.instantiate()
 		SelectableTileCollection.append(currentTile)
 		
 		# Move to correct position
 		currentTile.position = currentLocation;
-		currentLocation.x += PixelSizeForEachTile.x
+		currentLocation.x += (currentTile.GetSize().x * 2) * ScaleForEachTile.x
 		currentTile.scale = ScaleForEachTile
 		
 		# Setup the place the tile has in our world and the tile to paint
@@ -50,6 +53,7 @@ func SpawnSelectableTiles():
 		# does not mess with the Shader or call SetTile.
 		currentTile.CurrentLocationInOuterWorld = Vector2i(i, 0)
 		currentTile.SetTile(Vector2i(i, 0))
+		currentTile.SetTexture(ChooserTexture, ChoserTextureColumnsAndRows)
 		
 		# Hook up the event upon selected
 		if currentTile.has_signal("TileSelected"):

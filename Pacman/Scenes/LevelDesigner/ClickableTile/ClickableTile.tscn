@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnjq4i78h7m5q"]
+
+[ext_resource type="Script" path="res://Scenes/LevelDesigner/ClickableTile/ClickableTile.gd" id="1_e7cya"]
+[ext_resource type="Shader" path="res://Library/Shaders/TileShader.gdshader" id="1_r3w1l"]
+[ext_resource type="Texture2D" uid="uid://bkwxv7buvb13m" path="res://Media/Tilesets/DuelTilesetTemplate-WithGuides.png" id="2_ptksl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d1pfj"]
+resource_local_to_scene = true
+shader = ExtResource("1_r3w1l")
+shader_parameter/tilesHorizontal = 4
+shader_parameter/tilesVertical = 4
+shader_parameter/currentTile = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqo5s"]
+size = Vector2(127, 129)
+
+[node name="ClickableTile" type="Area2D"]
+script = ExtResource("1_e7cya")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_d1pfj")
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 0
+texture = ExtResource("2_ptksl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(64, 64)
+shape = SubResource("RectangleShape2D_vqo5s")
+
+[connection signal="gui_input" from="TextureRect" to="." method="OnTextureRectGuiInput"]

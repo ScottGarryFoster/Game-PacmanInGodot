@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqw5silrbnc5l"]
+[gd_scene load_steps=3 format=3 uid="uid://dqw5silrbnc5l"]
 
 [ext_resource type="Script" path="res://Scenes/LevelDesigner/TileChooser/TileChooser.gd" id="1_f35y4"]
+[ext_resource type="Texture2D" uid="uid://dxxwf7ec2aead" path="res://Media/Tilesets/TileSelector.png" id="2_4tmc3"]
 
 [node name="TileChooser" type="Node2D"]
 script = ExtResource("1_f35y4")
 ScaleForEachTile = Vector2(0.1, 0.1)
-PixelSizeForEachTile = Vector2(64, 64)
+ChooserTexture = ExtResource("2_4tmc3")
+ChoserTextureColumnsAndRows = Vector2i(4, 4)
