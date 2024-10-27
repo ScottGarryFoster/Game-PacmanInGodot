@@ -2,31 +2,35 @@
 
 [ext_resource type="Script" path="res://Scenes/LevelDesigner/DesignerTile/DesignerTile.gd" id="1_exauk"]
 [ext_resource type="Shader" path="res://Library/Shaders/TileShader.gdshader" id="1_mgbci"]
-[ext_resource type="Texture2D" uid="uid://d3p8hkf7nok8q" path="res://Media/Tilesets/PacmanLevel.png" id="3_7ie5w"]
+[ext_resource type="Texture2D" uid="uid://bkwxv7buvb13m" path="res://Media/Tilesets/DuelTilesetTemplate-WithGuides.png" id="3_aqe17"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xwp36"]
 resource_local_to_scene = true
 shader = ExtResource("1_mgbci")
-shader_parameter/tilesHorizontal = 20
-shader_parameter/tilesVertical = 20
+shader_parameter/tilesHorizontal = 4
+shader_parameter/tilesVertical = 4
 shader_parameter/currentTile = Vector2(0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gyr2j"]
-size = Vector2(320, 320)
+size = Vector2(127, 129)
 
 [node name="DesignerTile" type="Area2D"]
-scale = Vector2(2, 2)
+input_pickable = false
 script = ExtResource("1_exauk")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
 material = SubResource("ShaderMaterial_xwp36")
 offset_right = 40.0
 offset_bottom = 40.0
-mouse_filter = 0
-texture = ExtResource("3_7ie5w")
+mouse_filter = 2
+texture = ExtResource("3_aqe17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(160, 160)
+position = Vector2(64, 64)
 shape = SubResource("RectangleShape2D_gyr2j")
 
-[connection signal="gui_input" from="TextureRect" to="." method="OnTextureRectGuiInput"]
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExited"]
+[connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_shape_entered"]
+[connection signal="mouse_shape_exited" from="." to="." method="_on_mouse_shape_exited"]
