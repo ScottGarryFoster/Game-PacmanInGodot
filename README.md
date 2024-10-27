@@ -70,3 +70,4 @@ Getting the Grid aligned was tricky but eventually I managed to align things cor
 
 | Border | Template |
 | :-: | :-: |
+| ![Border tileset used](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/003-PacmanBorder.png?raw=true) | ![Template](https://github.com/ScottGarryFoster/Game-PacmanInGodot/blob/main/Development/003-DuelTilesetTemplate.png?raw=true) |
