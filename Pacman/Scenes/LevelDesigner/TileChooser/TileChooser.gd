@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 func SpawnSelectableTiles():
 	
 	var currentLocation = StartLocation
-	for i in range(3):
+	for i in range(4):
 		var currentTile = ClickableTileScene.instantiate()
 		SelectableTileCollection.append(currentTile)
 		

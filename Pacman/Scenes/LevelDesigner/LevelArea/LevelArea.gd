@@ -19,6 +19,7 @@ enum Tile
 	Nothing,
 	Border,
 	Barrier,
+	MediumBarrier,
 	Cage
 }	
 
@@ -49,6 +50,7 @@ var PaintableTextures: Array[Texture2D] = [
 	preload("res://Media/Tilesets/PacmanBorder.png"),
 	preload("res://Media/Tilesets/PacmanBarrierBigInner.png"),
 	preload("res://Media/Tilesets/PacmanBarrierBigOuter.png"),
+	preload("res://Media/Tilesets/PacmanBarrierMediumInner.png"),
 ]
 
 ## Clickable Tile Texture
@@ -220,6 +222,7 @@ func RunRule(
 	# Top Left, Top Right, Bottom Left, Bottom Right
 	var points_dict = {
 		# For reference these tiles have Border as the positive in the texture
+		# Border
 		Vector4i(Tile.Nothing,Tile.Nothing,Tile.Nothing,Tile.Nothing): Vector3i(0, 3, 0),
 		Vector4i(Tile.Border,Tile.Nothing,Tile.Nothing,Tile.Nothing): Vector3i(3, 3, 0),
 		Vector4i(Tile.Border,Tile.Border,Tile.Nothing,Tile.Nothing): Vector3i(1, 2, 0),
@@ -238,6 +241,7 @@ func RunRule(
 		Vector4i(Tile.Border,Tile.Border,Tile.Nothing,Tile.Border): Vector3i(2, 2, 0),
 		
 		# Top Left, Top Right, Bottom Left, Bottom Right
+		# Big Inner
 		Vector4i(Tile.Barrier,Tile.Barrier,Tile.Barrier,Tile.Barrier): Vector3i(0, 3, 1),
 		Vector4i(Tile.Border,Tile.Barrier,Tile.Barrier,Tile.Barrier): Vector3i(3, 3, 1),
 		Vector4i(Tile.Border,Tile.Border,Tile.Barrier,Tile.Barrier): Vector3i(1, 2, 1),
@@ -256,6 +260,7 @@ func RunRule(
 		Vector4i(Tile.Border,Tile.Border,Tile.Barrier,Tile.Border): Vector3i(2, 2, 1),
 		
 		# Top Left, Top Right, Bottom Left, Bottom Right
+		# Big Outer
 		Vector4i(Tile.Border,Tile.Nothing,Tile.Barrier,Tile.Nothing): Vector3i(3, 3, 2),
 		Vector4i(Tile.Barrier,Tile.Nothing,Tile.Border,Tile.Nothing): Vector3i(0, 0, 2),
 		Vector4i(Tile.Barrier,Tile.Nothing,Tile.Barrier,Tile.Nothing): Vector3i(3, 2, 2),
@@ -276,6 +281,25 @@ func RunRule(
 		Vector4i(Tile.Nothing,Tile.Barrier,Tile.Nothing,Tile.Nothing): Vector3i(2, 0, 2),
 		Vector4i(Tile.Nothing,Tile.Nothing,Tile.Barrier,Tile.Nothing): Vector3i(2, 3, 2),
 		Vector4i(Tile.Nothing,Tile.Nothing,Tile.Nothing,Tile.Barrier): Vector3i(2, 1, 2),
+		
+		# Top Left, Top Right, Bottom Left, Bottom Right
+		# Medium Inner
+		Vector4i(Tile.MediumBarrier,Tile.MediumBarrier,Tile.MediumBarrier,Tile.MediumBarrier): Vector3i(0, 3, 3),
+		Vector4i(Tile.Border,Tile.MediumBarrier,Tile.MediumBarrier,Tile.MediumBarrier): Vector3i(3, 3, 3),
+		Vector4i(Tile.Border,Tile.Border,Tile.MediumBarrier,Tile.MediumBarrier): Vector3i(1, 2, 3),
+		Vector4i(Tile.Border,Tile.Border,Tile.Border,Tile.MediumBarrier): Vector3i(3, 1, 3),
+		#Vector4i(Tile.Border,Tile.Border,Tile.Border,Tile.Border): Vector3i(2, 1, 0),
+		Vector4i(Tile.MediumBarrier,Tile.Border,Tile.MediumBarrier,Tile.MediumBarrier): Vector3i(0, 2, 3),
+		Vector4i(Tile.MediumBarrier,Tile.MediumBarrier,Tile.Border,Tile.MediumBarrier): Vector3i(0, 0, 3),
+		Vector4i(Tile.MediumBarrier,Tile.MediumBarrier,Tile.MediumBarrier,Tile.Border): Vector3i(1, 3, 3),
+		Vector4i(Tile.Border,Tile.MediumBarrier,Tile.MediumBarrier,Tile.Border): Vector3i(0, 1, 3),
+		Vector4i(Tile.Border,Tile.MediumBarrier,Tile.Border,Tile.MediumBarrier): Vector3i(3, 2, 3),
+		Vector4i(Tile.Border,Tile.MediumBarrier,Tile.Border,Tile.Border): Vector3i(2, 0, 3),
+		Vector4i(Tile.MediumBarrier,Tile.MediumBarrier,Tile.Border,Tile.Border): Vector3i(3, 0, 3),
+		Vector4i(Tile.MediumBarrier,Tile.Border,Tile.Border,Tile.Border): Vector3i(1, 1, 3),
+		Vector4i(Tile.MediumBarrier,Tile.Border,Tile.Border,Tile.MediumBarrier): Vector3i(2, 3, 3),
+		Vector4i(Tile.MediumBarrier,Tile.Border,Tile.MediumBarrier,Tile.Border): Vector3i(1, 0, 3),
+		Vector4i(Tile.Border,Tile.Border,Tile.MediumBarrier,Tile.Border): Vector3i(2, 2, 3),
 		}
 	
 	if points_dict.has(Vector4i(tl, tr, bl, br)):
@@ -290,6 +314,8 @@ func VectorToTile(textureLocation: Vector2i):
 		return Tile.Border
 	if textureLocation.x == 2 && textureLocation.y == 0:
 		return Tile.Barrier
+	if textureLocation.x == 3 && textureLocation.y == 0:
+		return Tile.MediumBarrier
 	return Tile.Nothing
 	
 func GetTextureFromNumber(textureNumber: int):
