@@ -1,5 +1,5 @@
 <FileWatcher>
     <Files>
-        <File filepath="E:\Development\Game-PacmanInGodot\Assets\Tilesets\Pacman\PacmanBarrierMediumInner.png" destination="E:\Development\Game-PacmanInGodot\Pacman\Media\Tilesets" />
+        <File filepath="E:\Development\Game-PacmanInGodot\Assets\Tilesets\Pacman\PacmanBarrierMediumInner.png" destination="E:\Development\Game-PacmanInGodot\Pacman\Media\Tilesets\" />
     </Files>
 </FileWatcher>
